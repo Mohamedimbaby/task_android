@@ -39,20 +39,22 @@ class MainActivity : AppCompatActivity() {
 
         appDi = (application as InstaBugApp).appDi
         appDi.presentationDi = PresentationDI(appDi.dataDi)
+
         appDi.presentationDi?.viewModelFactory?.create()?.let {
             viewModel = it
         }
+        if(!this::myResult.isInitialized) {
+            viewModel.fetchMappedResponse() // calling it from the view model
+            viewModel.receivedData.observe(this, Observer {
+                when (it) {
+                    WordsListEventData.LoadingState -> loadingStatus(true)
 
-        viewModel.fetchMappedResponse() // calling it from the view model
-        viewModel.receivedData.observe(this, Observer {
-            when (it) {
-                WordsListEventData.LoadingState -> loadingStatus(true)
+                    is WordsListEventData.SuccessState -> handleSuccessState(it.data)
 
-                is WordsListEventData.SuccessState -> handleSuccessState(it.data)
-
-                is WordsListEventData.ErrorState -> handleErrorState()
-            }
-        })
+                    is WordsListEventData.ErrorState -> handleErrorState()
+                }
+            })
+        }
         editTxt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
@@ -64,12 +66,12 @@ class MainActivity : AppCompatActivity() {
                 if(s!= null && s.isNotEmpty()){
                     searchOnTheKeyWord(s.toString())
                 }
-                else   {   wordsAdapter.updateTheData(myResult.data)
+                else   {
+                    if(::myResult.isInitialized)
+                    wordsAdapter.updateTheData(myResult.data)
             }
             }
         })
-
-
     }
  fun  searchOnTheKeyWord(KeyWord: String ){
    var result: HashMap<String , Int> = hashMapOf()
