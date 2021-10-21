@@ -1,0 +1,71 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto"
+    android:layout_width = "match_parent"
+    android:layout_height = "wrap_content"
+    android:gravity = "center_vertical"
+    android:background="@color/cyan_700"
+    android:id="@+id/action_bar"
+    android:padding = "10dp"
+    android:weightSum = "1">
+    <LinearLayout
+        android:layout_width = "0dp"
+        android:layout_height = "match_parent"
+        android:layout_weight = "0.8"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id = "@+id/app_name"
+            android:layout_width = "match_parent"
+            android:layout_height = "wrap_content"
+            android:layout_marginLeft = "10dp"
+            android:text = "@string/app_name"
+            android:textSize = "20sp"
+            android:textColor = "#fff"
+            android:visibility="visible"
+            android:textStyle = "bold"
+             />
+        <EditText
+            android:id="@+id/editTxt"
+            android:background="@drawable/edit_text_bg"
+            android:layout_width = "fill_parent"
+            android:layout_height = "wrap_content"
+            android:layout_marginLeft = "10dp"
+            android:searchIcon="@drawable/search"
+            android:textSize = "20sp"
+            android:visibility="gone"
+            android:hint="@string/search_here"
+            android:textColorHint="@color/white"
+            android:textColor = "@color/white"
+            android:textStyle = "normal"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width = "0dp"
+        android:layout_height = "match_parent"
+        android:layout_marginRight = "10dp"
+        android:layout_weight = "0.2"
+        android:gravity = "end">
+        <ImageView
+            android:layout_width = "wrap_content"
+            android:layout_height = "match_parent"
+            android:id="@+id/search_icon"
+            android:onClick="searchClick"
+            android:visibility="visible"
+            android:src = "@drawable/search" />
+        <ImageView
+            android:layout_width = "wrap_content"
+            android:layout_height = "match_parent"
+            android:id="@+id/close_icon"
+            android:onClick="closeSearch"
+            android:visibility="gone"
+            android:src = "@drawable/close" />
+        <ImageView
+            android:layout_width = "wrap_content"
+            android:layout_height = "match_parent"
+            android:onClick="sortClick"
+
+            android:layout_marginLeft = "20dp"
+            android:src = "@drawable/ic_baseline_sort_24" />
+    </LinearLayout>
+</LinearLayout>

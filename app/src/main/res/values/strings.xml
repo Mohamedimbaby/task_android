@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Android Challenge</string>
+    <string name="error">Error </string>
+    <string name="UnExpectedError">Un Expected Error Happened </string>
+    <string name="cancel">Cancel</string>
+    <string name="search_here">"Search here "</string>
+</resources>
